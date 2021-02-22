@@ -41,18 +41,22 @@ public class MapperUtil {
 										new Data(solrMap.get(entry.getKey()).getField(), longitude + "|" + latitude));
 							}
 
-						} else if (solrMap.get(entry.getKey()).getField().equalsIgnoreCase(DBFields.RISK_LEVEL.getString())) {
+						} else if (solrMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.RISK_LEVEL.getString())) {
 							if (entry.getValue().equalsIgnoreCase("H")) {
-								solrData.put(entry.getKey(), new Data(solrMap.get(entry.getKey()).getField(), RiskLevel.HIGH.getString()));
+								solrData.put(entry.getKey(),
+										new Data(solrMap.get(entry.getKey()).getField(), RiskLevel.HIGH.getString()));
 							}
 							if (entry.getValue().equalsIgnoreCase("M")) {
 								solrData.put(entry.getKey(),
 										new Data(solrMap.get(entry.getKey()).getField(), RiskLevel.MEDIUM.getString()));
 							}
 							if (entry.getValue().equalsIgnoreCase("L")) {
-								solrData.put(entry.getKey(), new Data(solrMap.get(entry.getKey()).getField(), RiskLevel.LOW.getString()));
+								solrData.put(entry.getKey(),
+										new Data(solrMap.get(entry.getKey()).getField(), RiskLevel.LOW.getString()));
 							}
-						} else if (solrMap.get(entry.getKey()).getField().equalsIgnoreCase(DBFields.OCCUPANCY_TYPE.getString())) {
+						} else if (solrMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.OCCUPANCY_TYPE.getString())) {
 							if (entry.getValue().equalsIgnoreCase("Y")) {
 								solrData.put(entry.getKey(),
 										new Data(solrMap.get(entry.getKey()).getField(), "Stand Alone"));
@@ -92,7 +96,8 @@ public class MapperUtil {
 			for (Entry<Integer, String> entry : rec.getRecord().entrySet()) {
 				try {
 					if (!cassandraMap.get(entry.getKey()).getField().equals("")) {
-						if (cassandraMap.get(entry.getKey()).getField().equalsIgnoreCase(DBFields.GEOCODE.getString())) {
+						if (cassandraMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.GEOCODE.getString())) {
 							if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase("longitude")) {
 								longitude = entry.getValue();
 							}
@@ -104,18 +109,22 @@ public class MapperUtil {
 										longitude + "|" + latitude));
 							}
 
-						} else if (cassandraMap.get(entry.getKey()).getField().equalsIgnoreCase(DBFields.RISK_LEVEL.getString())) {
+						} else if (cassandraMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.RISK_LEVEL.getString())) {
 							if (entry.getValue().equalsIgnoreCase("H")) {
-								cassandraData.put(entry.getKey(), new Data(cassandraMap.get(entry.getKey()).getField(), RiskLevel.HIGH.getString()));
+								cassandraData.put(entry.getKey(), new Data(cassandraMap.get(entry.getKey()).getField(),
+										RiskLevel.HIGH.getString()));
 							}
 							if (entry.getValue().equalsIgnoreCase("M")) {
-								cassandraData.put(entry.getKey(),
-										new Data(cassandraMap.get(entry.getKey()).getField(), RiskLevel.MEDIUM.getString()));
+								cassandraData.put(entry.getKey(), new Data(cassandraMap.get(entry.getKey()).getField(),
+										RiskLevel.MEDIUM.getString()));
 							}
 							if (entry.getValue().equalsIgnoreCase("L")) {
-								cassandraData.put(entry.getKey(), new Data(cassandraMap.get(entry.getKey()).getField(), RiskLevel.LOW.getString()));
+								cassandraData.put(entry.getKey(), new Data(cassandraMap.get(entry.getKey()).getField(),
+										RiskLevel.LOW.getString()));
 							}
-						} else if (cassandraMap.get(entry.getKey()).getField().equalsIgnoreCase(DBFields.OCCUPANCY_TYPE.getString())) {
+						} else if (cassandraMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.OCCUPANCY_TYPE.getString())) {
 							if (entry.getValue().equalsIgnoreCase("Y")) {
 								cassandraData.put(entry.getKey(),
 										new Data(cassandraMap.get(entry.getKey()).getField(), "Stand Alone"));
@@ -146,8 +155,6 @@ public class MapperUtil {
 		return cassandra;
 	}
 
-
-
 	public List<CassandraField> mapDataToECComplianceCassandraTable(ExcelDatabase edb, Map<Integer, Field> cassandraMap,
 			String dateCreated, String createdBy) {
 		List<CassandraField> cassandra = new ArrayList<>();
@@ -162,7 +169,8 @@ public class MapperUtil {
 			for (Entry<Integer, String> entry : rec.getRecord().entrySet()) {
 				try {
 					if (!cassandraMap.get(entry.getKey()).getField().equals("")) {
-						if (cassandraMap.get(entry.getKey()).getField().equalsIgnoreCase(DBFields.CLEARANCE_TYPE.getString())) {
+						if (cassandraMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.CLEARANCE_TYPE.getString())) {
 							if (entry.getValue().equalsIgnoreCase("N")) {
 								cassandraData.put(entry.getKey(),
 										new Data(cassandraMap.get(entry.getKey()).getField(), "NEW"));
@@ -171,7 +179,8 @@ public class MapperUtil {
 								cassandraData.put(entry.getKey(),
 										new Data(cassandraMap.get(entry.getKey()).getField(), "RENEWAL"));
 							}
-						} else if (cassandraMap.get(entry.getKey()).getField().equalsIgnoreCase(DBFields.RISK_LEVEL.getString())) {
+						} else if (cassandraMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.RISK_LEVEL.getString())) {
 							if (entry.getValue().equalsIgnoreCase("H")) {
 								cassandraData.put(entry.getKey(),
 										new Data(cassandraMap.get(entry.getKey()).getField(), "HIGH"));
@@ -187,19 +196,22 @@ public class MapperUtil {
 						} else if (cassandraMap.get(entry.getKey()).getField()
 								.equalsIgnoreCase(DBFields.SUBMITTED_DOCS_VALIDITY.getString())) {
 							if (entry.getValue().equalsIgnoreCase("Y")) {
-								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(Documents.BC.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader()
+										.equalsIgnoreCase(Documents.BC.getString())) {
 									String docCode = DocCodes.BC.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsValidity.put(docCode, docDate);
 									lastSubmittedDocsIssuedIndex = entry.getKey();
 								}
-								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(Documents.BP.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader()
+										.equalsIgnoreCase(Documents.BP.getString())) {
 									String docCode = DocCodes.BP.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsValidity.put(docCode, docDate);
 									lastSubmittedDocsValidityIndex = entry.getKey();
 								}
-								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(Documents.FSIC.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader()
+										.equalsIgnoreCase(Documents.FSIC.getString())) {
 									String docCode = DocCodes.FSIC.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsValidity.put(docCode, docDate);
@@ -213,19 +225,22 @@ public class MapperUtil {
 									lastSubmittedDocsValidityIndex = entry.getKey();
 								}
 
-								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(Documents.DISCHARGE_PERMIT.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader()
+										.equalsIgnoreCase(Documents.DISCHARGE_PERMIT.getString())) {
 									String docCode = DocCodes.DISCHARGE_PERMIT.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsValidity.put(docCode, docDate);
 									lastSubmittedDocsValidityIndex = entry.getKey();
 								}
-								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(Documents.PO_APSI.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader()
+										.equalsIgnoreCase(Documents.PO_APSI.getString())) {
 									String docCode = DocCodes.PO_APSI.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsValidity.put(docCode, docDate);
 									lastSubmittedDocsValidityIndex = entry.getKey();
 								}
-								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(Documents.PCO.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader()
+										.equalsIgnoreCase(Documents.PCO.getString())) {
 									String docCode = DocCodes.PCO.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsValidity.put(docCode, docDate);
@@ -259,33 +274,37 @@ public class MapperUtil {
 						} else if (cassandraMap.get(entry.getKey()).getField()
 								.equalsIgnoreCase(DBFields.SUBMITTED_DOCS_ISSUED.getString())) {
 							if (entry.getValue().equalsIgnoreCase("Y")) {
-								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(Documents.ECC.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader()
+										.equalsIgnoreCase(Documents.ECC.getString())) {
 									String docCode = DocCodes.ECC.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsIssued.put(docCode, docDate);
 									lastSubmittedDocsIssuedIndex = entry.getKey();
 								}
-								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(Documents.LLDA_CLEARANCE.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader()
+										.equalsIgnoreCase(Documents.LLDA_CLEARANCE.getString())) {
 									String docCode = DocCodes.LLDA_CLEARANCE.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsIssued.put(docCode, docDate);
 									lastSubmittedDocsIssuedIndex = entry.getKey();
 								}
-								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(Documents.HWID.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader()
+										.equalsIgnoreCase(Documents.HWID.getString())) {
 									String docCode = DocCodes.HWID.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsIssued.put(docCode, docDate);
 									lastSubmittedDocsIssuedIndex = entry.getKey();
 								}
-								if (cassandraMap.get(entry.getKey()).getHeader()
-										.equalsIgnoreCase(Documents.CERTIFICATE_OF_TREATMENT_AND_DISPOSAL.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(
+										Documents.CERTIFICATE_OF_TREATMENT_AND_DISPOSAL.getString())) {
 									String docCode = DocCodes.CERTIFICATE_OF_TREATMENT_AND_DISPOSAL.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsIssued.put(docCode, docDate);
 									lastSubmittedDocsIssuedIndex = entry.getKey();
 
 								}
-								if (cassandraMap.get(entry.getKey()).getHeader().equalsIgnoreCase(Documents.WATER_BILLING.getString())) {
+								if (cassandraMap.get(entry.getKey()).getHeader()
+										.equalsIgnoreCase(Documents.WATER_BILLING.getString())) {
 									String docCode = DocCodes.WATER_BILLING.getString();
 									String docDate = rec.getRecord().get(entry.getKey() + 1);
 									submittedDocsIssued.put(docCode, docDate);
@@ -293,7 +312,8 @@ public class MapperUtil {
 								}
 							}
 
-						} else if (cassandraMap.get(entry.getKey()).getField().equalsIgnoreCase(DBFields.AMT_PAID.getString())) {
+						} else if (cassandraMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.AMT_PAID.getString())) {
 							String fee = cassandraMap.get(entry.getKey()).getHeader();
 							double amt = Double.parseDouble(entry.getValue());
 							amountPaid.put(fee, amt);
@@ -313,7 +333,8 @@ public class MapperUtil {
 						new Data(DBFields.SUBMITTED_DOCS_VALIDITY.getString(), submittedDocsValidity));
 			}
 			if (submittedDocsIssued.size() != 0) {
-				cassandraData.put(lastSubmittedDocsIssuedIndex, new Data(DBFields.SUBMITTED_DOCS_ISSUED.getString(), submittedDocsIssued));
+				cassandraData.put(lastSubmittedDocsIssuedIndex,
+						new Data(DBFields.SUBMITTED_DOCS_ISSUED.getString(), submittedDocsIssued));
 			}
 			if (!amountPaid.isEmpty()) {
 				cassandraData.put(lastAmountPaidIndex, new Data(DBFields.AMT_PAID.getString(), amountPaid));
@@ -361,6 +382,142 @@ public class MapperUtil {
 					if (!cassandraMap.get(entry.getKey()).getField().equals("")) {
 						cassandraData.put(entry.getKey(),
 								new Data(cassandraMap.get(entry.getKey()).getField(), entry.getValue()));
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+					// e2.printStackTrace();
+				}
+			}
+
+			cassandra.add(new CassandraField(cassandraData, rec.getUuid(), dateCreated, createdBy));
+
+			// System.out.println("");
+		}
+		return cassandra;
+	}
+
+	public List<CassandraField> mapDataToEPWMDSolidWastesCassandraTable(ExcelDatabase edb,
+			Map<Integer, Field> cassandraMap, String dateCreated, String createdBy) {
+		List<CassandraField> cassandra = new ArrayList<>();
+		for (ExcelRecord rec : edb.getExcelDatabase()) {
+			Map<Integer, Data> cassandraData = new HashMap<>();
+			Map<String, Integer> wastes = new HashMap<>();
+			Map<String, String> haulers = new HashMap<>();
+			int lastWasteIndex = 0;
+			int lastHaulerIndex = 0;
+			for (Entry<Integer, String> entry : rec.getRecord().entrySet()) {
+				try {
+					if (!cassandraMap.get(entry.getKey()).getField().equals("")) {
+						if (cassandraMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.DAILY_WASTE_GENERATION.getString())) {
+							String fee = cassandraMap.get(entry.getKey()).getHeader();
+							int amt = Integer.parseInt(entry.getValue());
+
+							wastes.put(fee, amt);
+							lastWasteIndex = entry.getKey();
+						} else if (cassandraMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.HAULER.getString())) {
+							if (!entry.getValue().equals("")&&!rec.getRecord().get(entry.getKey() + 1).equals("")) {
+								String hauler = entry.getValue();
+								String collectionFrequency = rec.getRecord().get(entry.getKey() + 1);
+								haulers.put(hauler, collectionFrequency);
+								lastHaulerIndex = entry.getKey();
+
+							}
+						} else {
+							cassandraData.put(entry.getKey(),
+									new Data(cassandraMap.get(entry.getKey()).getField(), entry.getValue()));
+						}
+
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+			if (!wastes.isEmpty()) {
+				cassandraData.put(lastWasteIndex, new Data(DBFields.DAILY_WASTE_GENERATION.getString(), wastes));
+			}
+			if (!haulers.isEmpty()) {
+				cassandraData.put(lastHaulerIndex, new Data(DBFields.HAULER_COLLECTION_FREQUENCY.getString(), haulers));
+			}
+			cassandra.add(new CassandraField(cassandraData, rec.getUuid(), dateCreated, createdBy));
+		}
+		return cassandra;
+	}
+	public List<CassandraField> mapDataToEPWMDHazardousWastesCassandraTable(ExcelDatabase edb,
+			Map<Integer, Field> cassandraMap, String dateCreated, String createdBy) {
+		List<CassandraField> cassandra = new ArrayList<>();
+		for (ExcelRecord rec : edb.getExcelDatabase()) {
+			Map<Integer, Data> cassandraData = new HashMap<>();
+			Map<String, Integer> wastes = new HashMap<>();
+			int lastWasteIndex = 0;
+			for (Entry<Integer, String> entry : rec.getRecord().entrySet()) {
+				try {
+					if (!cassandraMap.get(entry.getKey()).getField().equals("")) {
+						if (cassandraMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.DAILY_WASTE_GENERATION.getString())) {
+							String fee = cassandraMap.get(entry.getKey()).getHeader();
+							int amt = Integer.parseInt(entry.getValue());
+
+							wastes.put(fee, amt);
+							lastWasteIndex = entry.getKey();
+						}  else {
+							cassandraData.put(entry.getKey(),
+									new Data(cassandraMap.get(entry.getKey()).getField(), entry.getValue()));
+						}
+
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+			if (!wastes.isEmpty()) {
+				cassandraData.put(lastWasteIndex, new Data(DBFields.DAILY_WASTE_GENERATION.getString(), wastes));
+			}
+			cassandra.add(new CassandraField(cassandraData, rec.getUuid(), dateCreated, createdBy));
+		}
+		return cassandra;
+	}
+
+	public List<CassandraField> mapDataToEPWMDStructuralRequirementsCassandraTable(ExcelDatabase edb,
+			Map<Integer, Field> cassandraMap, String dateCreated, String createdBy) {
+		List<CassandraField> cassandra = new ArrayList<>();
+		for (ExcelRecord rec : edb.getExcelDatabase()) {
+			Map<Integer, Data> cassandraData = new HashMap<>();
+			for (Entry<Integer, String> entry : rec.getRecord().entrySet()) {
+				try {
+					if (!cassandraMap.get(entry.getKey()).getField().equals("")) {
+						if (cassandraMap.get(entry.getKey()).getField()
+								.equalsIgnoreCase(DBFields.SEPTIC_TANK.getString())
+								|| cassandraMap.get(entry.getKey()).getField()
+										.equalsIgnoreCase(DBFields.STP_WWTF.getString())
+								|| cassandraMap.get(entry.getKey()).getField()
+										.equalsIgnoreCase(DBFields.SEWERAGE_CONNECTION.getString())
+								|| cassandraMap.get(entry.getKey()).getField()
+										.equalsIgnoreCase(DBFields.GREASE_TRAP.getString())
+								|| cassandraMap.get(entry.getKey()).getField()
+										.equalsIgnoreCase(DBFields.GREACE_INTERCEPTOR.getString())
+								|| cassandraMap.get(entry.getKey()).getField()
+										.equalsIgnoreCase(DBFields.OIL_WATER_SEPARATOR.getString())
+								|| cassandraMap.get(entry.getKey()).getField()
+										.equalsIgnoreCase(DBFields.MATERIALS_RECOVERY.getString())
+								|| cassandraMap.get(entry.getKey()).getField()
+										.equalsIgnoreCase(DBFields.PAINTING_BOOTH.getString())
+								|| cassandraMap.get(entry.getKey()).getField()
+										.equalsIgnoreCase(DBFields.SOUND_PROOFING.getString())) {
+							if (entry.getValue().equalsIgnoreCase("Y")) {
+								cassandraData.put(entry.getKey(),
+										new Data(cassandraMap.get(entry.getKey()).getField(), "true"));
+							}
+							if (entry.getValue().equalsIgnoreCase("N")) {
+								cassandraData.put(entry.getKey(),
+										new Data(cassandraMap.get(entry.getKey()).getField(), "false"));
+							}
+
+						} else {
+							cassandraData.put(entry.getKey(),
+									new Data(cassandraMap.get(entry.getKey()).getField(), entry.getValue()));
+						}
 					}
 				} catch (Exception e2) {
 					// TODO: handle exception

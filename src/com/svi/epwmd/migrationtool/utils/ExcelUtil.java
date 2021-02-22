@@ -95,7 +95,7 @@ public class ExcelUtil {
 		XSSFWorkbook wBook;
 		try {
 			wBook = new XSSFWorkbook(new FileInputStream(
-					"D:\\Users\\bdimayuga\\workspace\\EPWMDMigrationTool\\config\\field mapping.xlsx"));
+					fieldMap));
 			XSSFSheet sheet = wBook.getSheetAt(0);
 			int startingRow = 3;
 

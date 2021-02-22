@@ -39,7 +39,8 @@ public class CassandraUtil {
 				valueBuilder.append(value);
 				valueBuilder.append("]");
 			}else if (entry.getValue().getField().equalsIgnoreCase(DBFields.SUBMITTED_DOCS_VALIDITY.getString())
-					|| entry.getValue().getField().equalsIgnoreCase(DBFields.SUBMITTED_DOCS_ISSUED.getString())) {
+					|| entry.getValue().getField().equalsIgnoreCase(DBFields.SUBMITTED_DOCS_ISSUED.getString())
+					|| entry.getValue().getField().equalsIgnoreCase(DBFields.HAULER_COLLECTION_FREQUENCY.getString())) {
 				valueBuilder.append(",");
 				valueBuilder.append("{");
 				Map<String,String> value = null;
@@ -77,6 +78,25 @@ public class CassandraUtil {
 				valueBuilder.append("}");
 				
 				
+			}else if (entry.getValue().getField().equalsIgnoreCase(DBFields.DAILY_WASTE_GENERATION.getString())) {
+				valueBuilder.append(",");
+				valueBuilder.append("{");
+				Map<String,Integer> value = null;
+				if (entry.getValue().getValue()instanceof Map<?,?>) {
+					value = (Map)entry.getValue().getValue();
+				}
+				StringBuilder mapValue = new StringBuilder();
+				for (Entry<String, Integer> iterable_element : value.entrySet()) {
+					mapValue.append("'"+iterable_element.getKey()+"'"+":"+iterable_element.getValue()+",");
+				}
+				String mappedValueString = mapValue.toString();
+				if (mappedValueString.endsWith(",")) {
+					mappedValueString = mappedValueString.substring(0, mappedValueString.lastIndexOf(","));
+				}
+				valueBuilder.append(mappedValueString);
+				valueBuilder.append("}");
+				
+				
 			}else if (entry.getValue().getField().equalsIgnoreCase(DBFields.DATE_APPLIED.getString())||
 					entry.getValue().getField().equalsIgnoreCase(DBFields.DATE_ISSUED.getString())||
 					entry.getValue().getField().equalsIgnoreCase(DBFields.DATE_INSPECTED.getString())||
@@ -87,6 +107,17 @@ public class CassandraUtil {
 					entry.getValue().getField().equalsIgnoreCase(DBFields.TOTAL_AMOUNT_PAID.getString())||
 					entry.getValue().getField().equalsIgnoreCase(DBFields.TOTAL_EMPLOYEES.getString())) {
 				long val = Long.parseLong(entry.getValue().getValue().toString());
+				valueBuilder.append("," + val);
+			}else if (entry.getValue().getField().equalsIgnoreCase(DBFields.SEPTIC_TANK.getString())||
+					entry.getValue().getField().equalsIgnoreCase(DBFields.STP_WWTF.getString())|| 
+					entry.getValue().getField().equalsIgnoreCase(DBFields.SEWERAGE_CONNECTION.getString())||
+					entry.getValue().getField().equalsIgnoreCase(DBFields.GREASE_TRAP.getString())|| 
+					entry.getValue().getField().equalsIgnoreCase(DBFields.GREACE_INTERCEPTOR.getString())|| 
+					entry.getValue().getField().equalsIgnoreCase(DBFields.OIL_WATER_SEPARATOR.getString())||
+					entry.getValue().getField().equalsIgnoreCase(DBFields.MATERIALS_RECOVERY.getString())||
+					entry.getValue().getField().equalsIgnoreCase(DBFields.PAINTING_BOOTH.getString())||
+					entry.getValue().getField().equalsIgnoreCase(DBFields.SOUND_PROOFING.getString())) {
+				boolean val = Boolean.getBoolean(entry.getValue().getValue().toString());
 				valueBuilder.append("," + val);
 			} else {
 				valueBuilder.append("," + "'" + entry.getValue().getValue() + "'");
@@ -99,7 +130,7 @@ public class CassandraUtil {
 		String tableHeaderString = tableHeaderBuilder.toString();
 		String valueString = valueBuilder.toString();
 		String add = "INSERT INTO " + tableName + " (" + tableHeaderString + ")" + " VALUES (" + valueString + ");";
-//		System.out.println(add);
+//		System.out.println(tableName+" "+add);
 		session.execute(add);
 	}
 }
