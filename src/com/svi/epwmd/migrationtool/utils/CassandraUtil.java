@@ -24,7 +24,10 @@ public class CassandraUtil {
 			if (entry.getValue().getField().equalsIgnoreCase(DBFields.TEL_NOS.getString())
 					|| entry.getValue().getField().equalsIgnoreCase(DBFields.CELL_NOS.getString())
 					|| entry.getValue().getField().equalsIgnoreCase(DBFields.EMAILS.getString())
-					|| entry.getValue().getField().equalsIgnoreCase(DBFields.WORK_SCHED_DAYS.getString())) {
+					|| entry.getValue().getField().equalsIgnoreCase(DBFields.WORK_SCHED_DAYS.getString())
+					|| entry.getValue().getField().equalsIgnoreCase(DBFields.CASE_OFFICER.getString())
+					|| entry.getValue().getField().equalsIgnoreCase(DBFields.APPREHENDING_OFFICER.getString())
+					|| entry.getValue().getField().equalsIgnoreCase(DBFields.INSPECTOR.getString())) {
 				String[] splits = entry.getValue().getValue().toString().split(",");
 				StringBuilder listValue = new StringBuilder();
 				String value;
@@ -99,7 +102,6 @@ public class CassandraUtil {
 				
 			}else if (entry.getValue().getField().equalsIgnoreCase(DBFields.DATE_APPLIED.getString())||
 					entry.getValue().getField().equalsIgnoreCase(DBFields.DATE_ISSUED.getString())||
-					entry.getValue().getField().equalsIgnoreCase(DBFields.DATE_INSPECTED.getString())||
 					entry.getValue().getField().equalsIgnoreCase(DBFields.DATE_REVOKED.getString())||
 					entry.getValue().getField().equalsIgnoreCase(DBFields.VALID_UNTIL.getString())||
 					entry.getValue().getField().equalsIgnoreCase(DBFields.COMPLIANCE_DEADLINE.getString())||

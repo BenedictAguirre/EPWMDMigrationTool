@@ -16,7 +16,6 @@ public enum DBFields {
 	WORK_SCHED_DAYS("work_sched_days"),
 	DATE_APPLIED("date_applied"),
 	DATE_ISSUED("date_issued"),
-	DATE_INSPECTED("inspection_date"),
 	DATE_REVOKED("date_revoked"),
 	VALID_UNTIL("valid_until"),
 	COMPLIANCE_DEADLINE("compliance_deadline"),
@@ -36,8 +35,10 @@ public enum DBFields {
 	OIL_WATER_SEPARATOR("oil_water_separator"), 
 	MATERIALS_RECOVERY("materials_recovery"),
 	PAINTING_BOOTH("painting_booth"),
-	SOUND_PROOFING("sound_proofing")
-	
+	SOUND_PROOFING("sound_proofing"),
+	CASE_OFFICER("case_officer"),
+	APPREHENDING_OFFICER("officer"),
+	INSPECTOR("inspector")
 	;
 	
 
